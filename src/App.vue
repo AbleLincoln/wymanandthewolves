@@ -30,23 +30,14 @@ data() { }
     id="container"
     @scroll="handleScroll"
     :style="{
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity})), url(/cover.jpg)`,
+      background: `linear-gradient(rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity}))`,
     }"
   >
     <header>
-      <!-- <div class="wrapper"> -->
       <h1>Wyman & the Wolves</h1>
-
-      <!-- <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav> -->
-      <!-- </div> -->
     </header>
 
     <ShowsView />
-
-    <!-- <RouterView /> -->
   </div>
 </template>
 

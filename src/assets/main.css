@@ -3,6 +3,8 @@
 
 #app {
   font-weight: normal;
+  background-size: cover;
+  background-image: url(/cover.jpg);
 }
 
 a,
