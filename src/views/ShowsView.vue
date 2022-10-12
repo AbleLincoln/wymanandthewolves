@@ -108,7 +108,7 @@ h2 {
 section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px 140px;
+  padding: 48px 16px 140px;
   font-size: 24px;
 }
 
