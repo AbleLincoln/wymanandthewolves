@@ -1,5 +1,7 @@
 <script setup>
+import StickyBar from "./components/StickyBar.vue";
 import ShowsView from "./views/ShowsView.vue";
+import colors from "./utils/colors";
 </script>
 
 <script>
@@ -7,7 +9,16 @@ export default {
   data() {
     return {
       overlayOpacity: 0,
+      themeColor: [217, 184, 183, 1],
     };
+  },
+
+  watch: {
+    themeColor(newColor) {
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute("content", colors.toString(newColor));
+    },
   },
 
   methods: {
@@ -16,12 +27,22 @@ export default {
       const MAX_OPACITY = 0.5;
       const scrollPercent = event.target.scrollTop / event.target.offsetHeight;
       this.overlayOpacity = Math.min(scrollPercent * SCALE_FACTOR, MAX_OPACITY);
+
+      this.updateThemeColor(this.overlayOpacity);
+    },
+
+    updateThemeColor(alpha0) {
+      // just hard code for now
+      // rgba0 = (0, 0, 0, alpha0)
+      // rgba1 = (217, 184, 183, 1)
+      const c0 = [0, 0, 0, alpha0]; // top color
+      const c1 = [217, 184, 183, 1]; // bottom color, hardcoded for now
+      const newColor = colors.multiply(c0, c1);
+      this.themeColor = newColor;
     },
   },
 };
 </script>
-
-data() { }
 
 <template>
   <div
@@ -31,6 +52,10 @@ data() { }
       background: `linear-gradient(rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity}))`,
     }"
   >
+    <hr
+      :style="{ position: 'fixed', top: '151px', backgroundColor: 'black' }"
+    />
+    <StickyBar :background-color="themeColor" />
     <header>
       <h1>Wyman & the Wolves</h1>
     </header>

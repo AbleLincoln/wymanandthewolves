@@ -109,7 +109,7 @@ section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 16px 140px;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .show {
@@ -129,5 +129,11 @@ section {
 
 .nowrap {
   white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  section {
+    font-size: 20px;
+  }
 }
 </style>
