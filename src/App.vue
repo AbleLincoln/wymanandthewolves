@@ -52,9 +52,6 @@ export default {
       background: `linear-gradient(rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity}))`,
     }"
   >
-    <hr
-      :style="{ position: 'fixed', top: '151px', backgroundColor: 'black' }"
-    />
     <StickyBar :background-color="themeColor" />
     <header>
       <h1>Wyman & the Wolves</h1>
