@@ -87,13 +87,13 @@ export default {
     <h2>Shows</h2>
 
     <div v-for="(show, i) in shows" :key="i" class="show">
+      <p><span v-html="formatDate(show.date)"></span></p>
+      <p>{{ show.venue }}</p>
       <p>
-        <span v-html="formatDate(show.date)"></span><br /><small>{{
-          show.time
-        }}</small>
+        <small>{{ show.time }}</small>
       </p>
       <p>
-        {{ show.venue }} <br /><small>{{ show.location }}</small>
+        <small>{{ show.location }}</small>
       </p>
     </div>
   </section>
@@ -108,14 +108,14 @@ h2 {
 section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 16px 140px;
+  padding: 24px 24px 140px;
   font-size: 22px;
 }
 
 .show {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 25px;
+  grid-gap: 5px 25px;
   margin-bottom: 40px;
 }
 
@@ -123,7 +123,7 @@ section {
   line-height: 1.25;
 }
 
-.show p:first-child {
+.show p:nth-child(2n - 1) {
   text-align: right;
 }
 
