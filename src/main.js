@@ -16,6 +16,7 @@ import {
 
 library.add(faInstagram, faSpotify, faApple, faYoutube);
 
+/* create app */
 const app = createApp(App);
 
 app.component("fa-icon", FontAwesomeIcon);

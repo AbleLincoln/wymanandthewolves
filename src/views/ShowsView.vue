@@ -1,73 +1,33 @@
 <script setup>
-import { format } from "date-fns";
+import { format, startOfDay } from "date-fns";
+import {
+  query,
+  collection,
+  getDocs,
+  where,
+  Timestamp,
+} from "firebase/firestore";
+import { db } from "../db";
 </script>
 
 <script>
 export default {
   data() {
     return {
-      shows: [
-        {
-          date: "2022/10/16",
-          time: "1pm",
-          venue: "Mother's Tavern",
-          location: "Sunset Beach",
-        },
-        {
-          date: "2022/10/17",
-          time: "9pm",
-          venue: "Harvard and Stone",
-          location: "East Hollywood",
-        },
-        {
-          date: "2022/10/21",
-          time: "nighttime",
-          venue: "Silverlake Lounge",
-          location: "Silverlake",
-        },
-        {
-          date: "2022/10/22",
-          time: "3pm",
-          venue: "Salty Bear Brewing",
-          location: "Costa Mesa",
-        },
-        {
-          date: "2022/10/23",
-          time: "7pm",
-          venue: "Skip the Record",
-          location: "secret location",
-        },
-        {
-          date: "2022/10/24",
-          time: "9pm",
-          venue: "Harvard and Stone",
-          location: "East Hollywood",
-        },
-        {
-          date: "👻 Halloween 🎃",
-          time: "9pm",
-          venue: "Harvard and Stone",
-          location: "East Hollywood",
-        },
-        {
-          date: "2022/11/02",
-          time: "9pm",
-          venue: "Good Times at Davey Wayne's",
-          location: "Hollywood",
-        },
-        {
-          date: "2022/11/06",
-          time: "8pm",
-          venue: "Redwood Bar",
-          location: "DTLA",
-        },
-      ],
+      shows: [],
     };
+  },
+
+  async created() {
+    const date = Timestamp.fromDate(startOfDay(new Date()));
+    const q = query(collection(db, "shows"), where("date", ">=", date));
+    const querySnapshot = await getDocs(q);
+    this.shows = querySnapshot.docs.map((doc) => doc.data());
   },
 
   methods: {
     formatDate(date) {
-      const _date = new Date(date);
+      const _date = date.toDate();
       if (_date == "Invalid Date") return date;
       const dayOfWeek = format(_date, "cccc");
       const month = format(_date, "MMMM");
@@ -93,7 +53,7 @@ export default {
         <small>{{ show.time }}</small>
       </p>
       <p>
-        <small>{{ show.location }}</small>
+        <small>{{ show.neighborhood }}</small>
       </p>
     </div>
   </section>
