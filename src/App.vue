@@ -1,6 +1,7 @@
 <script setup>
 import StickyBar from "./components/StickyBar.vue";
 import ShowsView from "./views/ShowsView.vue";
+import NewSingleView from "./views/NewSingleView.vue";
 import colors from "./utils/colors";
 </script>
 
@@ -56,6 +57,8 @@ export default {
     <header>
       <h1>Wyman & the Wolves</h1>
     </header>
+
+    <NewSingleView />
 
     <ShowsView />
   </div>

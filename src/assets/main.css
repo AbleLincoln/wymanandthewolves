@@ -13,6 +13,13 @@ a {
   color: inherit;
 }
 
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 140px;
+  font-size: 22px;
+}
+
 @media (hover: hover) {
   a:hover {
     color: white;

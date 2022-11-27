@@ -1,4 +1,5 @@
 <script setup>
+import IconLink from "../components/IconLink.vue";
 import colors from "../utils/colors";
 </script>
 
@@ -25,26 +26,32 @@ export default {
 <template>
   <ul :style="{ background }">
     <li>
-      <a href="https://www.instagram.com/wymanandthewolves/" target="_blank">
-        <fa-icon icon="fa-brands fa-instagram" />
-      </a>
+      <IconLink
+        icon="instagram"
+        title="Instagram"
+        href="https://www.instagram.com/wymanandthewolves/"
+      />
     </li>
     <li>
-      <a
+      <IconLink
+        icon="spotify"
+        title="Spotify"
         href="https://open.spotify.com/artist/6tK8OQz0qjnTVDmXpt5TJR?si=F9pAcV88SfC5bnXZgDkBuQ"
-      >
-        <fa-icon icon="fa-brands fa-spotify" />
-      </a>
+      />
     </li>
     <li>
-      <a href="https://music.apple.com/us/artist/wyman-the-wolves/1486995669">
-        <fa-icon icon="fa-brands fa-apple" />
-      </a>
+      <IconLink
+        icon="apple"
+        title="Apple Music"
+        href="https://music.apple.com/us/artist/wyman-the-wolves/1486995669"
+      />
     </li>
     <li>
-      <a href="https://www.youtube.com/channel/UCccmTz2_GsR_VOjqDPMUyvw">
-        <fa-icon icon="fa-brands fa-youtube" />
-      </a>
+      <IconLink
+        icon="youtube"
+        title="YouTube"
+        href="https://www.youtube.com/channel/UCccmTz2_GsR_VOjqDPMUyvw"
+      />
     </li>
   </ul>
 </template>

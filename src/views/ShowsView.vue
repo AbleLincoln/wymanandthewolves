@@ -65,13 +65,6 @@ h2 {
   margin-bottom: 1em;
 }
 
-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 24px 140px;
-  font-size: 22px;
-}
-
 .show {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
