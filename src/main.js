@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
 
 import "./assets/main.css";
 
@@ -20,7 +19,5 @@ library.add(faInstagram, faSpotify, faApple, faYoutube);
 const app = createApp(App);
 
 app.component("fa-icon", FontAwesomeIcon);
-
-app.use(router);
 
 app.mount("#app");
