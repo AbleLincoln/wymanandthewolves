@@ -1,3 +1,5 @@
+<script setup></script>
+
 <template>
   <section>
     <img src="@/assets/images/wholeband.jpg" alt="" />
@@ -7,8 +9,6 @@
     <img src="@/assets/images/kylefeelingit.jpg" alt="" class="offset-other" />
   </section>
 </template>
-
-<script setup></script>
 
 <style scoped>
 img {

@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import { format, startOfDay } from "date-fns";
 import {
   query,
@@ -8,38 +9,30 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../db";
-</script>
 
-<script>
-export default {
-  data() {
-    return {
-      shows: [],
-    };
-  },
+const shows = ref([]);
 
-  async created() {
-    const date = Timestamp.fromDate(startOfDay(new Date()));
-    const q = query(collection(db, "shows"), where("date", ">=", date));
-    const querySnapshot = await getDocs(q);
-    this.shows = querySnapshot.docs.map((doc) => doc.data());
-  },
+onMounted(async () => {
+  // TODO: handle rejected promise
+  const date = Timestamp.fromDate(startOfDay(new Date()));
+  const q = query(collection(db, "shows"), where("date", ">=", date));
+  const querySnapshot = await getDocs(q);
+  shows.value = querySnapshot.docs.map((doc) => doc.data());
+});
 
-  methods: {
-    formatDate(date) {
-      const _date = date.toDate();
-      if (_date == "Invalid Date") return date;
-      const dayOfWeek = format(_date, "cccc");
-      const month = format(_date, "MMMM");
-      const dayOfMonth = this.formatOrdinal(format(_date, "do"));
+function formatDate(date) {
+  const _date = date.toDate();
+  if (_date == "Invalid Date") return date;
+  const dayOfWeek = format(_date, "cccc");
+  const month = format(_date, "MMMM");
+  const dayOfMonth = formatOrdinal(format(_date, "do"));
 
-      return `${dayOfWeek}, <span class="nowrap">${month} ${dayOfMonth}</span>`;
-    },
-    formatOrdinal(date) {
-      return date.replace(/(\D+)/, "<sup>$1</sup>");
-    },
-  },
-};
+  return `${dayOfWeek}, <span class="nowrap">${month} ${dayOfMonth}</span>`;
+}
+
+function formatOrdinal(date) {
+  return date.replace(/(\D+)/, "<sup>$1</sup>");
+}
 </script>
 
 <template>

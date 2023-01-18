@@ -1,26 +1,20 @@
 <script setup>
+import { computed } from "vue";
 import IconLink from "../components/IconLink.vue";
 import colors from "../utils/colors";
-</script>
 
-<script>
-export default {
-  props: {
-    backgroundColor: Array,
-  },
-  computed: {
-    background() {
-      // little "media query"
-      if (window.innerWidth > 900) return "rgba(0,0,0,0)";
+const props = defineProps({
+  backgroundColor: Array,
+});
 
-      return `linear-gradient(${colors.toString(
-        this.backgroundColor
-      )} 70px, ${colors.toString(
-        colors.makeTransparent(this.backgroundColor)
-      )})`;
-    },
-  },
-};
+const background = computed(() => {
+  // little "media query"
+  if (window.innerWidth > 900) return "rgba(0,0,0,0)";
+
+  return `linear-gradient(${colors.toString(
+    props.backgroundColor
+  )} 70px, ${colors.toString(colors.makeTransparent(props.backgroundColor))})`;
+});
 </script>
 
 <template>
