@@ -6,7 +6,7 @@ import IconLink from "../components/IconLink.vue";
   <section>
     <h2>New Single</h2>
 
-    <img src="../assets/fools_game.png" />
+    <img src="@/assets/images/fools_game.png" />
 
     <ul>
       <li>

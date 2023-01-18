@@ -2,6 +2,7 @@
 import StickyBar from "./components/StickyBar.vue";
 import ShowsView from "./views/ShowsView.vue";
 import NewSingleView from "./views/NewSingleView.vue";
+import GalleryView from "./views/GalleryView.vue";
 import colors from "./utils/colors";
 </script>
 
@@ -61,6 +62,8 @@ export default {
     <NewSingleView />
 
     <ShowsView />
+
+    <GalleryView />
   </div>
 </template>
 

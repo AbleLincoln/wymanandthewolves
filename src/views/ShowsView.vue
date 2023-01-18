@@ -57,12 +57,26 @@ export default {
       </p>
     </div>
   </section>
+
+  <section>
+    <h3>Booking</h3>
+
+    <p class="center">
+      <a href="mailto:wymanandthewolves@gmail.com">
+        wymanandthewolves@gmail.com
+      </a>
+    </p>
+  </section>
 </template>
 
 <style scoped>
 h2 {
   text-align: center;
   margin-bottom: 1em;
+}
+
+h3 {
+  text-align: center;
 }
 
 .show {
