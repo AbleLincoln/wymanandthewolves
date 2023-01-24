@@ -1,5 +1,9 @@
 import { createApp } from "vue";
+import { VueFire, VueFireAppCheck, VueFireAuth } from "vuefire";
+import { ReCaptchaV3Provider } from "firebase/app-check";
 import App from "./App.vue";
+// import router from "./router";
+import { firebaseApp } from "./firebase";
 
 import "./assets/main.css";
 
@@ -18,6 +22,21 @@ library.add(faInstagram, faSpotify, faApple, faYoutube);
 /* create app */
 const app = createApp(App);
 
+app.use(VueFire, {
+  firebaseApp,
+  modules: [
+    VueFireAppCheck({
+      provider: new ReCaptchaV3Provider(
+        "6Le0SOUiAAAAAODZ4xtfy6wJyo4gr0b_yMy9F-ur"
+      ),
+      isTokenAutoRefreshEnabled: true,
+      debug: true, // TODO: false for prod
+    }),
+    VueFireAuth(),
+  ],
+});
+
+// app.use(router);
 app.component("fa-icon", FontAwesomeIcon);
 
 app.mount("#app");

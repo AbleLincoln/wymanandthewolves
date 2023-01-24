@@ -1,24 +1,15 @@
 <script setup>
-import { ref, onMounted } from "vue";
 import { format, startOfDay } from "date-fns";
-import {
-  query,
-  collection,
-  getDocs,
-  where,
-  Timestamp,
-} from "firebase/firestore";
-import { db } from "../db";
+import { useCollection, useFirestore } from "vuefire";
+import { query, collection, where, Timestamp } from "firebase/firestore";
+// import { db } from "../firebase";
 
-const shows = ref([]);
-
-onMounted(async () => {
-  // TODO: handle rejected promise
-  const date = Timestamp.fromDate(startOfDay(new Date()));
-  const q = query(collection(db, "shows"), where("date", ">=", date));
-  const querySnapshot = await getDocs(q);
-  shows.value = querySnapshot.docs.map((doc) => doc.data());
-});
+const date = Timestamp.fromDate(startOfDay(new Date()));
+const db = useFirestore();
+const shows = useCollection(
+  query(collection(db, "shows"), where("date", ">=", date)),
+  { ssrKey: "watw" }
+);
 
 function formatDate(date) {
   const _date = date.toDate();
