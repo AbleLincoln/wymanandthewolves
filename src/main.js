@@ -22,6 +22,8 @@ library.add(faInstagram, faSpotify, faApple, faYoutube);
 /* create app */
 const app = createApp(App);
 
+console.log(import.meta.env.DEV);
+
 app.use(VueFire, {
   firebaseApp,
   modules: [
@@ -30,7 +32,7 @@ app.use(VueFire, {
         "6Le0SOUiAAAAAODZ4xtfy6wJyo4gr0b_yMy9F-ur"
       ),
       isTokenAutoRefreshEnabled: true,
-      debug: import.meta.env.DEV,
+      debug: !!import.meta.env.DEV,
     }),
     VueFireAuth(),
   ],
