@@ -5,6 +5,8 @@ import App from "./App.vue";
 import router from "./router";
 import { firebaseApp } from "./firebase";
 
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
 import "./assets/main.css";
 
 /* Font Awesome Icons */
@@ -38,7 +40,10 @@ app.use(VueFire, {
   ],
 });
 
+const vuetify = createVuetify();
+
 app.use(router);
+app.use(vuetify);
 app.component("fa-icon", FontAwesomeIcon);
 
 app.mount("#app");

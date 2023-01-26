@@ -2,7 +2,6 @@
 import { format, startOfDay } from "date-fns";
 import { useCollection, useFirestore } from "vuefire";
 import { query, collection, where, Timestamp } from "firebase/firestore";
-// import { db } from "../firebase";
 
 const date = Timestamp.fromDate(startOfDay(new Date()));
 const db = useFirestore();
