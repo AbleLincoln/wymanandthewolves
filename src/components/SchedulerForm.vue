@@ -1,34 +1,26 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <label> Date </label>
-            <input type="date" v-model="date" placeholder="date" />
-          </td>
-          <td>
-            <label> Time </label>
-            <input type="text" v-model="time" placeholder="evening, e.g." />
-          </td>
-          <td>
-            <label> Venue </label>
-            <input type="text" v-model="venue" placeholder="venue" />
-          </td>
-          <td>
-            <label> Neighborhood </label
-            ><input
-              type="text"
-              v-model="neighborhood"
-              placeholder="Silverlake, e.g."
-            />
-          </td>
-          <td>
-            <button type="submit">+ add show</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <label> Date </label>
+      <input type="date" v-model="date" placeholder="date" />
+    </div>
+    <div>
+      <label> Time </label>
+      <input type="text" v-model="time" placeholder="evening, e.g." />
+    </div>
+    <div>
+      <label> Venue </label>
+      <input type="text" v-model="venue" placeholder="venue" />
+    </div>
+    <div>
+      <label> Neighborhood </label
+      ><input
+        type="text"
+        v-model="neighborhood"
+        placeholder="Silverlake, e.g."
+      />
+    </div>
+    <button type="submit">+ add show</button>
   </form>
 </template>
 
@@ -36,6 +28,8 @@
 import { ref } from "vue";
 import { collection, addDoc } from "firebase/firestore";
 import { useFirestore } from "vuefire";
+
+const emits = defineEmits(["submit"]);
 
 const db = useFirestore();
 
@@ -66,88 +60,39 @@ async function handleSubmit() {
 
   // clear form
   [date, time, venue, neighborhood].forEach((_ref) => (_ref.value = ""));
-  //   date.value = "";
-  //   time.value = "";
-  //   venue.value = "";
-  //   neighborhood.value = "";
+
+  emits("submit");
 }
 </script>
 
 <style scoped>
-form {
+form > div {
+  margin: 1rem 0;
 }
 
-table {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-  border: 2px solid black;
-  margin: 20px 0px;
-}
-
-form table tr {
-  display: grid;
-  grid-template-columns: 30% 15% 1fr 1fr;
-}
-
-@media (max-width: 900px) {
-  form table tr {
-    grid-template-columns: 1fr;
-  }
-}
-
-td {
-  /* padding: 10px; */
-  border: 1px solid black;
-  padding: 0;
-  height: 100%;
-}
-
-td {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.25);
-}
-
-td:last-child {
-  position: absolute;
-  right: -10px;
-  transform: translateX(100%);
-  background-color: transparent;
-  border: none;
-  display: flex;
-}
-
-label {
-  position: absolute;
-  top: 0;
-  transform: translateY(-100%);
-  background-color: rgba(0, 0, 0, 0.25);
-  border: 1px solid black;
-  border-bottom: 0;
-  width: 100%;
-  left: 0;
-  padding: 3px 10px;
-  box-sizing: border-box;
-  border-radius: 5px 5px 0 0;
+form > div:first-child {
+  margin-top: 0;
 }
 
 input {
-  width: 100%;
+  width: 900px;
+  max-width: 100%;
   padding: 8px;
   background-color: rgba(255, 255, 255, 0.95);
-  /* border: none; */
-  /* border: 10px solid rgba(0, 0, 0, 0); */
   border-style: solid;
+  display: block;
 }
 
 button {
   line-height: 32px;
   font-size: 16px;
+  margin-top: 1rem;
   padding: 0 15px;
   box-sizing: inherit;
   background-color: green;
   border: 1px solid rgba(0, 0, 0, 0.25);
   color: white;
   border-radius: 10px;
+  width: 100%;
 }
 </style>

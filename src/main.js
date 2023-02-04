@@ -5,8 +5,6 @@ import App from "./App.vue";
 import router from "./router";
 import { firebaseApp } from "./firebase";
 
-import "vuetify/styles";
-import { createVuetify } from "vuetify";
 import "./assets/main.css";
 
 /* Font Awesome Icons */
@@ -18,8 +16,21 @@ import {
   faApple,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import {
+  faTrash,
+  faPen,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faInstagram, faSpotify, faApple, faYoutube);
+library.add(
+  faInstagram,
+  faSpotify,
+  faApple,
+  faYoutube,
+  faTrash,
+  faPen,
+  faCircleXmark
+);
 
 /* create app */
 const app = createApp(App);
@@ -38,10 +49,7 @@ app.use(VueFire, {
   ],
 });
 
-const vuetify = createVuetify();
-
 app.use(router);
-app.use(vuetify);
 app.component("fa-icon", FontAwesomeIcon);
 
 app.mount("#app");
