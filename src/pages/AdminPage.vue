@@ -12,6 +12,10 @@
         <SchedulerForm @submit="isModalOpen = false" />
       </Modal>
 
+      <Modal :is-open="isEdit" @close="isEdit = false">
+        <EditForm v-if="isEdit" @submit="isEdit = null" :show="isEdit" />
+      </Modal>
+
       <button @click="isModalOpen = true" class="add-show">+ Add Show</button>
 
       <div class="table">
@@ -37,6 +41,7 @@
                 <fa-icon
                   icon="fa-solid fa-pen"
                   title="Edit show"
+                  @click="editShow(show)"
                   class="action"
                 />
                 <fa-icon
@@ -62,6 +67,7 @@ import { collection, query, orderBy, doc, deleteDoc } from "firebase/firestore";
 import { format } from "date-fns";
 
 import SchedulerForm from "../components/SchedulerForm.vue";
+import EditForm from "../components/EditForm.vue";
 import Modal from "../components/Modal.vue";
 
 const router = useRouter();
@@ -100,6 +106,11 @@ function deleteShow(show) {
   ) {
     deleteDoc(doc(db, "shows", show.id));
   }
+}
+
+const isEdit = ref();
+function editShow(show) {
+  isEdit.value = { id: show.id, ...show };
 }
 </script>
 
